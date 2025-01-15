@@ -5,7 +5,6 @@
 body{
   width: 100%;
   height: 100vh;
-  overflow: hidden;
 }
 
 #root{
@@ -13,8 +12,14 @@ body{
   height: 100%;
 }
 
+.rotate {
+  transform: rotate(180deg);
+  transform-origin: center center;
+}
+
 @layer base {
   :root {
     --radius: 0.5rem;
   }
 }
+
