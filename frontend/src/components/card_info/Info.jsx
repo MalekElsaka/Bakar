@@ -1,53 +1,58 @@
-const Info = ({cardInfo}) => {
+import secVisaLogo from "../../assets/sec_visa_logo.png"
+
+const Info = ({ cardInfo: { cardholderName, last4, expiryMonth, expiryYear, brand, cvc, status, cardtype, billing_address, created_at } }) => {
     return (
         <div className="w-full flex flex-col gap-2 mt-8">
             <div className="flex overflow-hidden h-[19px]">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Card number</p>
                 <p className="ml-20 text-[34px] mr-2 -mt-[26px] h-fit">.... .... ....</p>
-                <p className="text-[12px]">1234</p>
+                <p className="text-[12px]">{last4}</p>
             </div>
 
             <div className="flex overflow-hidden h-[19px]">
                 <p className="text-[12px] min-w-[90px] text-nowrap">CVV</p>
-                <p className="ml-20 text-[34px] -mt-[26px] h-fit">...</p>
+                <p className="ml-20 text-[12px] tracking-wider h-fit">{cvc}</p>
             </div>
 
             <div className="flex">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Expiration</p>
-                <p className="ml-20 text-[12px]">10/2026</p>
+                <p className="ml-20 text-[12px]">{expiryMonth}/{expiryYear}</p>
             </div>
 
             <div className="flex">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Brand</p>
-                <p className="ml-20 text-[12px]">Visa</p>
+                <p className="ml-20 text-[12px]">{brand}</p>
+                <img className="h-3 ml-1 mt-1" src={secVisaLogo} alt="visa_logo" />
             </div>
 
             <div className="flex">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Status</p>
-                <p className="ml-20 text-[12px]">Active</p>
+                <div className="border border-black p-1 ml-20 ">
+                    <p className=" text-[10px] font-semibold">{status}</p>
+                </div>
             </div>
 
             <div className="flex">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Cardholder</p>
-                <p className="ml-20 text-[12px]">Malek Elsaka</p>
+                <p className="ml-20 text-[12px]">{cardholderName}</p>
 
             </div>
 
             <div className="flex">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Card type</p>
-                <p className="ml-20 text-[12px]">Virtual</p>
+                <p className="ml-20 text-[12px]">{cardtype}</p>
 
             </div>
 
             <div className="flex">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Created at</p>
-                <p className="ml-20 text-[12px]">Nov 15, 2023, 9:32 PM</p>
+                <p className="ml-20 text-[12px]">{created_at}</p>
 
             </div>
 
             <div className="flex">
                 <p className="text-[12px] min-w-[90px] text-nowrap">Billing address</p>
-                <p className="ml-20 text-[12px]">123 Main Street, San Fransisco, CA, 94111, US</p>
+                <p className="ml-20 text-[12px]">{billing_address}</p>
             </div>
         </div>
     );
