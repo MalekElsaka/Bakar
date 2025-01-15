@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <Routes>
           <Route path="/" element={<Navigate to="/cards" />} />
           <Route path="/transactions" element={<TxnsInfoPage />} />
