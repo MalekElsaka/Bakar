@@ -1,24 +1,23 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Navbar from './components/navbar/Navbar';
+import { lazy, Suspense } from 'react';
 
-import { Button } from "@/components/ui/button"
-import CardInfoPage from "./pages/CardInfoPage"
-
-// routing and code splitting
+const TxnsInfoPage = lazy(() => import('./pages/TxnsInfoPage'));
+const CardInfoPage = lazy(() => import('./pages/CardInfoPage'));
 
 function App() {
   return (
-  <>
-    {/* navbar */}
-    <div className="w-full h-[70px] flex items-center px-24 bg-white">
-      <p className="text-[25px] font-jakarta font-semibold">BAKAR</p>
-      
-      <div className="ml-auto flex">
-        <p className="cursor-pointer text-[17px]">Issued cards</p>
-        <p className="ml-14 cursor-pointer text-[17px]">Transactions</p>
-      </div>
-    </div>
-    <CardInfoPage/>
-  </>
-  )
+    <Router>
+      <Navbar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/cards" />} />
+          <Route path="/transactions" element={<TxnsInfoPage />} />
+          <Route path="/cards" element={<CardInfoPage />} />
+        </Routes>
+      </Suspense>
+    </Router>
+  );
 }
 
-export default App
+export default App;
