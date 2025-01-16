@@ -20,6 +20,9 @@ const useTransactions = (initialData) => {
                     ? mapStatus(transaction.status)
                     : transaction[checkedField];
             
+            if (checkedField === 'created') {
+                return String(value).toLowerCase().includes(searchText);
+            }
             return String(value).toLowerCase().startsWith(searchText);
         });
     }, [transactions, filterText, checkedField]);
