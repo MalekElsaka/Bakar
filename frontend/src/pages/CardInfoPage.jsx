@@ -1,33 +1,12 @@
 import Actions from "@/components/card_info/Actions";
 import Card from "@/components/card_info/Card";
 import Info from "@/components/card_info/Info";
-import { axiosInstance } from "@/lib/utils";
-import { useState, useEffect } from "react";
 import Loading from "@/components/ui/loading";
 import CardholderDropDown from "@/components/card_info/CardholderDropdown";
+import useCardInfo from "@/hooks/useCardInfo";
 
 const CardInfoPage = () => {
-    const [cardInfo, setCardInfo] = useState({});
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchCardInfo = async () => {
-            const response = await axiosInstance.get('/api/IssueCard/get-card-data');
-            if (response.status === 200) {
-                const spacedCardholderName = response.data.cardholderName?.replace(/([a-z])([A-Z])/g, '$1 $2');
-                setCardInfo({
-                    ...response.data,
-                    cardholderName: spacedCardholderName,
-                    status: "Active",
-                    cardtype: "Virtual",
-                    created_at: 'Nov 19, 2023, 9:32 PM',
-                    billing_address: '123 Main Street, San Fransisco, CA, 94111, US'
-                });
-                setLoading(false);
-            }
-        };
-        fetchCardInfo();
-    }, []);
+    const { cardInfo, loading } = useCardInfo();
 
     if (loading) {
         return (
