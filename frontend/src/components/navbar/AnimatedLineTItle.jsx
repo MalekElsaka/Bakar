@@ -20,7 +20,7 @@ const AnimatedLineTitle = ({title}) => {
       onMouseLeave={handleMouseLeave}
     >
       <p>{title}</p>
-      <style jsx>{`
+      <style jsx="true">{`
         @keyframes slideIn {
           from { transform: translateX(-100%); }
           to { transform: translateX(0); }
@@ -36,8 +36,8 @@ const AnimatedLineTitle = ({title}) => {
           transform: !hasEntered ? 'translateX(-100%)' : undefined,
           animation: hasEntered 
             ? (isHovering 
-              ? 'slideIn 0.5s forwards'
-              : 'slideOut 0.5s forwards')
+              ? 'slideIn 0.6s forwards'
+              : 'slideOut 0.6s forwards')
             : 'none'
         }}
       />
